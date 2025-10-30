@@ -77,11 +77,6 @@ int main()
 }
 
 /*
-file qua.txt
-+ a b t1
-+ c d t2
-* t1 t2 t3
-
 
 output
 

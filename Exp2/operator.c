@@ -103,7 +103,6 @@ void tokenize_input(char *raw) {
 
 void main() {
     char raw_input[100];
-    input = (char *)malloc(100 * sizeof(char));
 
     printf("\nEnter the expression:\n");
     scanf("%s", raw_input);

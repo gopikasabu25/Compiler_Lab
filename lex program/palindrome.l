@@ -1,41 +1,32 @@
 %{
-#include<string.h>
-#include<stdio.h>
-
-char str[100];
-int i=0;
-int j;
+#include <stdio.h>
 %}
+
 %%
-[^\n] {str[i++]=yytext[0];}
-\n {str[i]='\0'; return 0;}
+[a-zA-Z0-9]+ {
+    int i,flag = 1;
+    int j=yyleng-1;
+    for(i = 0;i <= j; i++) {
+        if(yytext[i] != yytext[j]) {
+            flag = 0;
+            break;
+        }
+        j--;
+    }
+    if(flag)
+        printf("Given string is Palindrome\n");
+    else
+        printf("Given string is not Palindrome\n");
+}
+\n    ; // Ignore newlines
+.     ; // Ignore other characters
 %%
-int main()
-{
-printf("enter the string:");
-yylex();
-int len=strlen(str);
-int k=len-1;
-int flag=0;
-for(j=0;j<len;j++)
-{
-if(str[j]!=str[k])
-{
- flag=1;
- break;
- }
- k--;
- }
- if(flag==0)
- {
- printf("palindrome:");
- }
- else
- {
- printf("not palindrome");
- }
- return 0;
- }
- int yywrap() {
+
+int main() {
+    printf("Enter a string: (ctrl+D)");
+    yylex();
+    return 0;
+}
+int yywrap() {
     return 1;
 }
